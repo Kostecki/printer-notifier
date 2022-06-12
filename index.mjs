@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env zx
 
 const rawConfig = await fs.readFile("./config.json");
 const config = JSON.parse(rawConfig);
