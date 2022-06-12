@@ -1,0 +1,9 @@
+{
+  unifi_host: "",
+  unifi_port: "",
+  unifi_user: "",
+  unifi_pass: "",
+  tg_apikey: "",
+  tg_chatId: ""
+  printer_mac: "",
+}
