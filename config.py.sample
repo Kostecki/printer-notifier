@@ -1,3 +1,5 @@
+uptime_threshold = 900  # seconds / 15 minutes
+
 tg_apikey = ""
 tg_chatId = ""
 printer_ip = ""

@@ -26,7 +26,7 @@ async def check():
         now = dt.datetime.now(timezone.utc).replace(microsecond=0)
         delta = (now-then).total_seconds()
 
-        if delta > 3600:
+        if delta > config.uptime_threshold:
             pretty_time = "{:0>8}".format(str(dt.timedelta(seconds=delta)))
             requests.post(
                 url,
