@@ -7,9 +7,6 @@ from brother import Brother, SnmpError, UnsupportedModel
 
 import config
 
-# Telegram API url
-url = f"https://api.telegram.org/bot{config.tg_apikey}/sendMessage"
-
 
 async def check():
     try:
@@ -26,14 +23,22 @@ async def check():
         now = dt.datetime.now(timezone.utc).replace(microsecond=0)
         delta = (now-then).total_seconds()
 
-        if delta > config.uptime_threshold:
-            pretty_time = "{:0>8}".format(str(dt.timedelta(seconds=delta)))
-            requests.post(
-                url,
-                data={
-                    'chat_id': config.tg_chatId, 'parse_mode': 'html', 'text': f"<b>Brother HL-2270W</b> \nThe printer has been on for {pretty_time}"
-                }
-            )
+    if True:
+        pretty_time = "{:0>8}".format(str(dt.timedelta(seconds=delta)))
+        response = requests.post(
+            config.ntfy_url,
+            headers={
+                "Authorization": f"Basic {config.ntfy_auth}"
+            },
+            json={
+                "topic": "Tower",
+                "tags": ["printer"],
+                "title": "Brother HL-2270W",
+                "message": f"The printer has been on for {pretty_time}"
+            }
+        )
+
+        print(response.text)
 
 
 async def main():
